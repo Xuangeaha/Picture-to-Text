@@ -33,7 +33,7 @@ def openfile():
 
 
 top = tk.Tk()
-top.title("OCR图片转文字工具  引擎：Tesseract-OCR  By: 轩哥啊哈OvO")
+top.title("PTT 图片转文字工具 2023.3  引擎：Tesseract-OCR  By: 轩哥啊哈OvO")
 top.geometry("1200x800")
 
 filePath = tk.StringVar()
