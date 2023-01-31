@@ -6,7 +6,11 @@ from PIL import Image, ImageTk
 
 def trans():
     contents.delete('1.0', tk.END)
-    transTxt = pytesseract.image_to_string(Image.open(filePath.get()), lang='chi_sim')
+    try:
+        transTxt = pytesseract.image_to_string(Image.open(filePath.get()), lang='chi_sim')
+    except:
+        copyright['fg'] = "Red"
+        copyright['text'] = "您未安装Tesseract或未将Tesseract加入您的系统环境变量，请前往 https://github.com/tesseract-ocr/tesseract/releases/tag/5.3.0 下载。"
     transTxt = transTxt.strip('\n\r')
     contents.insert(tk.INSERT, transTxt.replace(' ', '').replace('\n\n', '\n').replace('\r', ''))
 
@@ -53,6 +57,7 @@ frame3.pack(side=tk.RIGHT, fill=tk.BOTH, expand=1)
 tk.Label(frame3, text='识别结果：', borderwidth=5).pack(side=tk.TOP, padx=20, pady=10)
 contents = tk.Text(frame3, font=('Arial', 15))
 contents.pack(side=tk.TOP, expand=1, fill=tk.BOTH)
-tk.Label(frame3, text='Copyright (c) 2023 轩哥啊哈OvO ALL Rights Reserved.', borderwidth=5).pack(side=tk.BOTTOM, padx=20, pady=10)
+copyright = tk.Label(frame3, text='Copyright (c) 2023 轩哥啊哈OvO ALL Rights Reserved.', borderwidth=5)
+copyright.pack(side=tk.BOTTOM, padx=20, pady=10)
 
 top.mainloop()
